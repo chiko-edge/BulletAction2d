@@ -4,15 +4,13 @@ using UnityEngine;
 
 public class PlayerMove : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public void init()
     {
-        
+        Debug.Log("init");
     }
 
-    // Update is called once per frame
-    void Update()
+    public void test()
     {
-        
+        Debug.Log("ƒeƒXƒg");
     }
 }

@@ -7,18 +7,17 @@ public class PlayerController : MonoBehaviour
 {
     private Animator animator = null;
     private Rigidbody2D rigidbody = null;
+    private PlayerMove playerMove;
 
     // Start is called before the first frame update
     void Start()
     {
         animator = GetComponent<Animator>();
         rigidbody = GetComponent<Rigidbody2D>();
-    }
+        playerMove = GetComponent<PlayerMove>();
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+        playerMove.test();
+
     }
 
     public void OnMove(InputValue inputValue)
