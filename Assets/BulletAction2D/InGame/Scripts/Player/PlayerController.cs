@@ -6,37 +6,38 @@ using UnityEngine.InputSystem;
 public class PlayerController : MonoBehaviour
 {
     private Animator animator = null;
-    private Rigidbody2D rigidbody = null;
     private PlayerMove playerMove;
+
+    private Vector2 moveInput;
 
     // Start is called before the first frame update
     void Start()
     {
         animator = GetComponent<Animator>();
-        rigidbody = GetComponent<Rigidbody2D>();
         playerMove = GetComponent<PlayerMove>();
-
-        playerMove.test();
 
     }
 
     public void OnMove(InputValue inputValue)
     {
-        Debug.Log("move" + inputValue.Get<Vector2>());
+        moveInput = inputValue.Get<Vector2>();
+        Debug.Log("move" + moveInput);
+        playerMove.MoveDirection = moveInput.x;
+
     }
 
     public void OnJump()
     {
-        Debug.Log("jump");
+        //Debug.Log("jump");
     }
 
     public void OnFire()
     {
-        Debug.Log("Fire");
+        //Debug.Log("Fire");
     }
 
     public void OnCircle(InputValue inputValue)
     {
-        Debug.Log("Circle" + inputValue.Get<Vector2>());
+        //Debug.Log("Circle" + inputValue.Get<Vector2>());
     }
 }
