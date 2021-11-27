@@ -5,30 +5,38 @@ using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
-    private Animator animator = null;
     private PlayerMove playerMove;
+    private PlayerAnimation playerAnimation;
 
     private Vector2 moveInput;
 
     // Start is called before the first frame update
     void Start()
     {
-        animator = GetComponent<Animator>();
+        
         playerMove = GetComponent<PlayerMove>();
+        playerAnimation = GetComponent<PlayerAnimation>();
 
     }
 
     public void OnMove(InputValue inputValue)
     {
         moveInput = inputValue.Get<Vector2>();
-        Debug.Log("move" + moveInput);
         playerMove.MoveDirection = moveInput.x;
+        playerAnimation.animeRun(moveInput.x);
 
     }
 
-    public void OnJump()
+    public void OnJumpStart()
     {
-        //Debug.Log("jump");
+        playerMove.jumpStart();
+        Debug.Log("jump start");
+    }
+
+    public void OnJumpEnd()
+    {
+        playerMove.jumpEnd();
+        Debug.Log("jump end");
     }
 
     public void OnFire()

@@ -14,7 +14,7 @@
                     "interactions": ""
                 },
                 {
-                    "name": "Jump",
+                    "name": "JumpStart",
                     "type": "Button",
                     "id": "4ee18045-899b-445f-88d8-3f384a621003",
                     "expectedControlType": "Button",
@@ -34,6 +34,14 @@
                     "type": "Value",
                     "id": "0259c242-ed3d-4af3-bc2b-5cd0b071edc0",
                     "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "JumpEnd",
+                    "type": "Button",
+                    "id": "dcee3a9e-b368-487e-9edd-749a6e6b9e28",
+                    "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
                 }
@@ -109,10 +117,10 @@
                     "name": "",
                     "id": "9e960887-8689-4c70-b8d6-ab6fbecc85a0",
                     "path": "<Keyboard>/space",
-                    "interactions": "",
+                    "interactions": "Press",
                     "processors": "",
                     "groups": "Keyboard＆Mouse",
-                    "action": "Jump",
+                    "action": "JumpStart",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -135,6 +143,17 @@
                     "processors": "",
                     "groups": "Keyboard＆Mouse",
                     "action": "Circle",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "55018e4a-a16d-46bf-848a-87f65b6bf104",
+                    "path": "<Keyboard>/space",
+                    "interactions": "Press(behavior=1)",
+                    "processors": "",
+                    "groups": "Keyboard＆Mouse",
+                    "action": "JumpEnd",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
