@@ -7,6 +7,7 @@ public class PlayerController : MonoBehaviour
 {
     private PlayerMove playerMove;
     private PlayerAnimation playerAnimation;
+    private Wepon wepon;
 
     private Vector2 moveInput;
 
@@ -16,6 +17,7 @@ public class PlayerController : MonoBehaviour
         
         playerMove = GetComponent<PlayerMove>();
         playerAnimation = GetComponent<PlayerAnimation>();
+        wepon = GetComponentInChildren<Wepon>();
 
     }
 
@@ -47,5 +49,6 @@ public class PlayerController : MonoBehaviour
     public void OnCircle(InputValue inputValue)
     {
         //Debug.Log("Circle" + inputValue.Get<Vector2>());
+        wepon.SetCircle(inputValue.Get<Vector2>());
     }
 }

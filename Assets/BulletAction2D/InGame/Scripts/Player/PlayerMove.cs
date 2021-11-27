@@ -19,11 +19,11 @@ public class PlayerMove : MonoBehaviour
     //重力
     private float gravity;
     //ジャンプスピード
-    private float jumpSpeed = 10;
+    private float jumpSpeed = 8;
     //高さ制限
-    private float jumpHight = 50;
+    private float jumpHight = 7;
     //ジャンプ時間制限
-    private float jumpLimitTime = 0.3f;
+    private float jumpLimitTime = 0.4f;
 
     //ジャンプフラグ
     private bool isJump;
@@ -36,6 +36,9 @@ public class PlayerMove : MonoBehaviour
     private bool canHeight;
     //ジャンプ時間は大丈夫か
     private bool canTime;
+
+    private bool isGround, isHead;
+
 
 
 
@@ -62,7 +65,7 @@ public class PlayerMove : MonoBehaviour
         moveSpeed = 5;
         groundCheck = GetComponentInChildren<GroundCheck>();
         headCheck = GetComponentInChildren<HeadCheck>();
-        gravity = 9.8f;
+        gravity = 4f;
 
         
     }
@@ -74,14 +77,16 @@ public class PlayerMove : MonoBehaviour
         xSpeed = moveSpeed * moveDirection;
         ySpeed = 0;
 
-        Debug.Log(headCheck.IsHead());
+        isGround = groundCheck.IsGround();
+        isHead = headCheck.IsHead();
+
 
         if (isJump)
         {
             canHeight = jumpPos + jumpHight > transform.position.y;
             canTime = jumpLimitTime > jumpTime;
 
-            if(canHeight && canTime && !headCheck.IsHead())
+            if(canHeight && canTime && !isHead)
             {
                 ySpeed = jumpSpeed;
                 jumpTime += Time.deltaTime;
@@ -90,8 +95,9 @@ public class PlayerMove : MonoBehaviour
             {
                 isJump = false;
             }
+
         }
-        else if(!groundCheck.IsGround())
+        if(!isJump && !isGround)
         {
             ySpeed = -gravity;
         }
