@@ -44,6 +44,7 @@ public class PlayerController : MonoBehaviour
     public void OnFire()
     {
         //Debug.Log("Fire");
+        wepon.Attack();
     }
 
     public void OnCircle(InputValue inputValue)
