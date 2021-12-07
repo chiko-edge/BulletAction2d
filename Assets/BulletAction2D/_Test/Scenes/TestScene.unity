@@ -529,7 +529,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d7d288f417d35e44797b53f6c6105454, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  baseBullet: {fileID: 0}
+  baseBullet: {fileID: 6141819697540895114, guid: 08a6e1ea754b34f4ea959df01c7d70d2, type: 3}
 --- !u!1 &1811942714
 GameObject:
   m_ObjectHideFlags: 0

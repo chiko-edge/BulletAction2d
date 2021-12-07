@@ -9,9 +9,16 @@ public class Wepon : MonoBehaviour
     [SerializeField]
     private BaseBullet baseBullet;
 
+    //リキャストタイム
+    private float recastTime = 0.2f;
+    //攻撃実行可能フラグ
+    private bool canAttack;
+
 
     private void Start()
     {
+
+        canAttack = true;
         bulletCircle = GetComponentInChildren<BulletCircle>();
     }
 
@@ -22,9 +29,24 @@ public class Wepon : MonoBehaviour
 
     public void Attack()
     {
-        //照準と武器位置から向きを設定する
-        Vector3 targetVecter3 = (bulletCircle.transform.position - transform.position).normalized;
-        Vector2 targetVecter = new Vector2(targetVecter3.x, targetVecter3.y);
-        BaseBullet obj = BaseBullet.Instantiate(baseBullet, targetVecter, transform.position);
+        if (canAttack)
+        {
+            //照準と武器位置から向きを設定する
+            Vector3 targetVecter3 = (bulletCircle.transform.position - transform.position).normalized;
+            Vector2 targetVecter = new Vector2(targetVecter3.x, targetVecter3.y);
+            BaseBullet obj = BaseBullet.Instantiate(baseBullet, targetVecter, transform.position);
+
+            canAttack = false;
+            StartCoroutine("recast");
+        }
+
+    }
+
+    //リキャスト時間経過後攻撃可能にする
+    IEnumerator recast()
+    {
+        yield return new WaitForSeconds(recastTime);
+        canAttack = true;
+
     }
 }

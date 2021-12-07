@@ -12,6 +12,8 @@ public class BulletCircle : MonoBehaviour
 
     private string assetName;
 
+    Vector2 mousePosition;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -29,7 +31,11 @@ public class BulletCircle : MonoBehaviour
             spriteRenderer.sprite = circleSpriteHandle.Result;
         };
 
+    }
 
+    private void Update()
+    {
+        transform.position = Camera.main.ScreenToWorldPoint(new Vector3(mousePosition.x, mousePosition.y, 1));
     }
 
     private void OnDestroy()
@@ -43,7 +49,8 @@ public class BulletCircle : MonoBehaviour
 
     public void SetCirclePos(Vector2 position)
     {
-        transform.position = Camera.main.ScreenToWorldPoint( new Vector3(position.x, position.y, 1));
+        mousePosition = position;
+        
     }
 
 }
