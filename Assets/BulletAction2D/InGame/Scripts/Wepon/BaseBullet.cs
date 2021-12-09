@@ -6,13 +6,13 @@ public class BaseBullet : MonoBehaviour
 {
     private Rigidbody2D rb = null;
 
+    //’e‘¬
+    private float moveSpeed;
 
     //ŽË’ö
     private float moveRange;
     //’e“¹
 
-    //’e‘¬
-    private float moveSpeed;
 
     //’eŽí•Ê
 
