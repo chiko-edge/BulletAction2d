@@ -21,6 +21,14 @@ MonoBehaviour:
     m_Address: circle_1
     m_ReadOnly: 0
     m_SerializedLabels: []
+  - m_GUID: 56db7add311070c4f8af74cdba99c0d2
+    m_Address: SimpleBullet
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 8f8a8a15cf7580648ac713b766a64c85
+    m_Address: LongBullet
+    m_ReadOnly: 0
+    m_SerializedLabels: []
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 58ff76adee586ca48afd556e9ab82261, type: 2}
   m_SchemaSet:

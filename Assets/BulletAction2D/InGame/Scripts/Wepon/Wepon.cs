@@ -27,14 +27,15 @@ public class Wepon : MonoBehaviour
         bulletCircle.SetCirclePos(position);
     }
 
-    public void Attack()
+    public void Attack(BulletData bulletData)
     {
         if (canAttack)
         {
+
             //Æ€‚Æ•ŠíˆÊ’u‚©‚çŒü‚«‚ğİ’è‚·‚é
             Vector3 targetVecter3 = (bulletCircle.transform.position - transform.position).normalized;
             Vector2 targetVecter = new Vector2(targetVecter3.x, targetVecter3.y);
-            BaseBullet obj = BaseBullet.Instantiate(baseBullet, targetVecter, transform.position);
+            BaseBullet obj = BaseBullet.Instantiate(baseBullet, targetVecter, transform.position, bulletData);
 
             canAttack = false;
             StartCoroutine("recast");

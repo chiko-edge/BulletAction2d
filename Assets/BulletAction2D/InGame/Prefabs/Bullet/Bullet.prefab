@@ -72,7 +72,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 895612497
-  m_SortingLayer: 4
+  m_SortingLayer: 5
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 430c0c48261c3fe418052ca444514cfd, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -97,6 +97,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 427ee0e8e02646f468b375d5b1186e46, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  defaltBulletData: {fileID: 11400000, guid: 6d568f2fbcd62fc4eb840461773c42be, type: 2}
 --- !u!50 &6141819697540895115
 Rigidbody2D:
   serializedVersion: 4

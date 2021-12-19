@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Ground
   - Bullet
+  - Item
+  - BulletItem
   layers:
   - Default
   - TransparentFX
@@ -16,8 +18,8 @@ TagManager:
   - Player
   - Ground
   - Bullet
-  - 
-  - 
+  - Item
+  - GroundCheck
   - 
   - 
   - 
@@ -45,6 +47,9 @@ TagManager:
     locked: 0
   - name: Ground
     uniqueID: 1358639779
+    locked: 0
+  - name: Item
+    uniqueID: 3216511273
     locked: 0
   - name: Player
     uniqueID: 3265192457

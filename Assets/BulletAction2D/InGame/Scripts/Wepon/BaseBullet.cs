@@ -6,11 +6,14 @@ public class BaseBullet : MonoBehaviour
 {
     private Rigidbody2D rb = null;
 
-    //íeë¨
-    private float moveSpeed;
+    [SerializeField]
+    private BulletData defaltBulletData;
 
-    //éÀíˆ
-    private float moveRange;
+    private BulletData bullet;
+
+    private SpriteRenderer spriteRenderer;
+
+
     //íeìπ
 
 
@@ -39,25 +42,40 @@ public class BaseBullet : MonoBehaviour
         set { startPosition = value; }
     }
 
+    public BulletData Bullet
+    {
+        get { return bullet; }
+        set { 
+            if(value == null)
+            {
+                bullet = defaltBulletData;
+            }
+            else
+            {
+                bullet = value;
+            } 
+        }
+    }
+
 
 
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        moveSpeed = 5;
-        moveRange = 5;
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        spriteRenderer.sprite = bullet.bulletSprite;
 
     }
 
     // Update is called once per frame
     void Update()
     {
-        velocity = velocity.normalized * moveSpeed * Time.deltaTime;
+        velocity = velocity.normalized * bullet.moveSpeed * Time.deltaTime;
 
         rb.MovePosition(new Vector2(transform.position.x, transform.position.y) + velocity);
 
-        if (Vector2.Distance(transform.position,StartPosition) > moveRange)
+        if (Vector2.Distance(transform.position,StartPosition) > bullet.maxMoveRange)
         {
             Destroy(this.gameObject);
         }
@@ -86,11 +104,12 @@ public class BaseBullet : MonoBehaviour
     /// <param name="target"></param>
     /// <param name="position"></param>
     /// <returns></returns>
-    public static BaseBullet Instantiate(BaseBullet prefab,Vector2 target, Vector3 position)
+    public static BaseBullet Instantiate(BaseBullet prefab,Vector2 target, Vector3 position, BulletData bulletData)
     {
         BaseBullet obj = Instantiate(prefab,position,Quaternion.identity);
         obj.Velocity = target;
         obj.StartPosition = position;
+        obj.Bullet = bulletData;
 
 
         //å¸Ç´Çê›íË

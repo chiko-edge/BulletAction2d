@@ -55,5 +55,15 @@ public class BulletData : ScriptableObject
     /// </summary>
     public BulletEffectType bulletEffectType;
 
+    /// <summary>
+    /// ’e‚Ì‰æ‘œ
+    /// </summary>
+    public Sprite bulletSprite;
+
+    /// <summary>
+    /// ’e‚ÌƒAƒCƒRƒ“
+    /// </summary>
+    public Sprite bulletIconSprite;
+
 
 }

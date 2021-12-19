@@ -8,6 +8,7 @@ public class PlayerController : MonoBehaviour
     private PlayerMove playerMove;
     private PlayerAnimation playerAnimation;
     private Wepon wepon;
+    private PlayerItemInventory playerItemInventory;
 
     private Vector2 moveInput;
 
@@ -18,6 +19,7 @@ public class PlayerController : MonoBehaviour
         playerMove = GetComponent<PlayerMove>();
         playerAnimation = GetComponent<PlayerAnimation>();
         wepon = GetComponentInChildren<Wepon>();
+        playerItemInventory = GetComponent<PlayerItemInventory>();
 
     }
 
@@ -44,12 +46,23 @@ public class PlayerController : MonoBehaviour
     public void OnFire()
     {
         //Debug.Log("Fire");
-        wepon.Attack();
+        wepon.Attack(playerItemInventory.getActiveBullet());
     }
 
     public void OnCircle(InputValue inputValue)
     {
         //Debug.Log("Circle" + inputValue.Get<Vector2>());
         wepon.SetCircle(inputValue.Get<Vector2>());
+    }
+
+    public void OnItemGet()
+    {
+        Debug.Log("item get");
+        playerItemInventory.setBulletData();
+    }
+
+    public void OnBulletChange()
+    {
+        playerItemInventory.changeActiveBulletIndex();
     }
 }
