@@ -16,7 +16,7 @@ MonoBehaviour:
   moveSpeed: 5
   attacPower: 5
   recastTime: 0.6
-  maxMoveRange: 5
+  maxMoveRange: 50
   bulletType: 0
   BulletBallisticType: 0
   bulletAccelerationType: 0
@@ -24,3 +24,7 @@ MonoBehaviour:
   bulletEffectType: 0
   bulletSprite: {fileID: 21300000, guid: 430c0c48261c3fe418052ca444514cfd, type: 3}
   bulletIconSprite: {fileID: 21300000, guid: 430c0c48261c3fe418052ca444514cfd, type: 3}
+  downForce: 0
+  acceleration: 0.5
+  maxAcceleration: 4
+  starAccelerationDistance: 1

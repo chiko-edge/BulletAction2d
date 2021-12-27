@@ -4,10 +4,18 @@ using UnityEngine;
 
 public enum BulletAccelerationType
 {
-    //“™‘¬
+    /// <summary>
+    /// “™‘¬
+    /// </summary>
     ConstantVelocity,
-    //‰Á‘¬
+
+    /// <summary>
+    /// ‰Á‘¬
+    /// </summary>
     Acceleration,
-    //Œ¸‘¬
+    
+    /// <summary>
+    /// Œ¸‘¬
+    /// </summary>
     Deceleration
 }

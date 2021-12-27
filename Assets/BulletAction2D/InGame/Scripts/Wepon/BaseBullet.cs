@@ -9,24 +9,22 @@ public class BaseBullet : MonoBehaviour
     [SerializeField]
     private BulletData defaltBulletData;
 
+    //Œ‚‚Â’e‚Ìî•ñ
     private BulletData bullet;
-
+    //g—p‚·‚é‰æ‘œ
     private SpriteRenderer spriteRenderer;
 
 
-    //’e“¹
-
-
-    //’eí•Ê
-
-
-    //’…’e“®ì
-
-
-    //Œø‰Ê
-
     private Vector2 velocity = Vector2.right;
     private Vector2 startPosition = Vector2.right;
+
+    //ˆÚ“®‘¬“x
+    private float moveSpeed = default;
+    //‰Á‘¬“x
+    private float acceleration = default;
+    //ˆÚ“®‹——£
+    private float moveDistance = default;
+
 
 
     //ƒvƒƒpƒeƒBŒQ
@@ -69,19 +67,25 @@ public class BaseBullet : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
-        velocity = velocity.normalized * bullet.moveSpeed * Time.deltaTime;
-
-        rb.MovePosition(new Vector2(transform.position.x, transform.position.y) + velocity);
-
-        if (Vector2.Distance(transform.position,StartPosition) > bullet.maxMoveRange)
+        //Å‘åˆÚ“®‹——£‚ğ’´‚¦‚Ä‚¢‚½‚çíœ
+        moveDistance = Vector2.Distance(transform.position, StartPosition);
+        if (moveDistance > bullet.maxMoveRange)
         {
             Destroy(this.gameObject);
         }
 
+        //ˆÚ“®î•ñì¬
+        moveSpeedMake();
+        Velocity = velocityMake();
+
+        //ˆÚ“®À{
+        rb.MovePosition(new Vector2(transform.position.x, transform.position.y) + velocity);
+
     }
 
+    
 
     /// <summary>
     /// ÚG”»’è
@@ -115,8 +119,73 @@ public class BaseBullet : MonoBehaviour
         //Œü‚«‚ğİ’è
         obj.transform.rotation = Quaternion.FromToRotation(Vector3.right, target);
 
-        Debug.Log(obj.velocity);
-
         return obj;
+    }
+
+    /// <summary>
+    /// ˆÚ“®•ûŒüŒvZ
+    /// </summary>
+    /// <returns></returns>
+    private Vector2 velocityMake()
+    {
+        Vector2 result;
+        switch (bullet.BulletBallisticType)
+        {
+            case BulletBallisticType.Straight:
+            default:
+                result = Velocity.normalized * (moveSpeed + acceleration) * Time.deltaTime;
+                break;
+
+            case BulletBallisticType.Gravity:
+                Velocity = new Vector2(Velocity.x, Velocity.y - bullet.downForce * Time.deltaTime);
+                result = Velocity.normalized * (moveSpeed + acceleration) * Time.deltaTime;
+                gameObject.transform.rotation = Quaternion.FromToRotation(Vector3.right, Velocity);
+
+                break;
+
+        }
+
+        return result;
+    }
+
+    /// <summary>
+    /// ˆÚ“®‘¬“xŒvZ
+    /// </summary>
+    private void moveSpeedMake()
+    {
+        switch(bullet.bulletAccelerationType)
+        {
+            case BulletAccelerationType.ConstantVelocity:
+            default:
+                moveSpeed = bullet.moveSpeed;
+                break;
+
+            case BulletAccelerationType.Acceleration:
+                moveSpeed = bullet.moveSpeed;
+                if (moveDistance > bullet.starAccelerationDistance)
+                {
+                    acceleration += bullet.acceleration;
+                    if(acceleration > bullet.maxAcceleration)
+                    {
+                        acceleration = bullet.maxAcceleration;
+                    }
+                }
+
+
+                break;
+
+            case BulletAccelerationType.Deceleration:
+                moveSpeed = bullet.moveSpeed;
+                if (moveDistance > bullet.starAccelerationDistance)
+                {
+                    acceleration -= bullet.acceleration;
+                    if (acceleration < bullet.maxAcceleration)
+                    {
+                        acceleration = -bullet.maxAcceleration;
+                    }
+                }
+
+                break;
+        }
     }
 }

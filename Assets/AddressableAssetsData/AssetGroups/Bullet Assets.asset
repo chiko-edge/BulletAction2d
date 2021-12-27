@@ -10,20 +10,28 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
-  m_Name: Default Local Group
+  m_Name: Bullet Assets
   m_EditorClassIdentifier: 
-  m_GroupName: Default Local Group
+  m_GroupName: Bullet Assets
   m_Data:
     m_SerializedData: []
-  m_GUID: 9ce1c794f05f90142b8f107c937699bc
+  m_GUID: 1f5d7504b37293b469e6aeefbcefb375
   m_SerializeEntries:
-  - m_GUID: 4324eca554f35f748a67d2aad79dec6d
-    m_Address: circle_1
+  - m_GUID: 6d568f2fbcd62fc4eb840461773c42be
+    m_Address: DefaltBullet
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 8f8a8a15cf7580648ac713b766a64c85
+    m_Address: LongBullet
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 56db7add311070c4f8af74cdba99c0d2
+    m_Address: SimpleBullet
     m_ReadOnly: 0
     m_SerializedLabels: []
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 58ff76adee586ca48afd556e9ab82261, type: 2}
   m_SchemaSet:
     m_Schemas:
-    - {fileID: 11400000, guid: 2470bdddefebd3243a0eec663923e59e, type: 2}
-    - {fileID: 11400000, guid: 855378d04c3a1cc4081803681b7f57eb, type: 2}
+    - {fileID: 11400000, guid: ddc1638b921304a429f29d7c8017fc72, type: 2}
+    - {fileID: 11400000, guid: 4e1aed90c9b95424f94af06a1c099e75, type: 2}

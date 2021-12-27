@@ -65,5 +65,25 @@ public class BulletData : ScriptableObject
     /// </summary>
     public Sprite bulletIconSprite;
 
+    /// <summary>
+    /// 弾道タイプが落下のときに使用
+    /// </summary>
+    public float downForce;
+
+    /// <summary>
+    /// 加速度
+    /// 1Fで増える値
+    /// </summary>
+    public float acceleration;
+
+    /// <summary>
+    /// 最大加速度
+    /// </summary>
+    public float maxAcceleration;
+
+    /// <summary>
+    /// 加速開始距離
+    /// </summary>
+    public float starAccelerationDistance;
 
 }
