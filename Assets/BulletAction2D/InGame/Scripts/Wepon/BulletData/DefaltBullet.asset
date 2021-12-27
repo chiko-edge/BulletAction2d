@@ -17,16 +17,16 @@ MonoBehaviour:
   attacPower: 5
   recastTime: 0.6
   maxMoveRange: 50
-  bulletType: 0
+  bulletType: 1
   BulletBallisticType: 0
   bulletAccelerationType: 0
   bulletImpactMovementType: 0
   bulletEffectType: 0
   bulletSprite: {fileID: 21300000, guid: 430c0c48261c3fe418052ca444514cfd, type: 3}
   bulletIconSprite: {fileID: 21300000, guid: 430c0c48261c3fe418052ca444514cfd, type: 3}
-  downForce: 0
+  downForce: 0.1
   acceleration: 0.5
   maxAcceleration: 4
   starAccelerationDistance: 1
-  bulletQuantity: 5
+  bulletQuantity: 3
   bulletAngle: 15

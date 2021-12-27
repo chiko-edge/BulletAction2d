@@ -16,6 +16,7 @@ public class BaseBullet : MonoBehaviour
 
 
     private Vector2 velocity = Vector2.right;
+    private Vector2 updateVelocity = Vector2.right;
     private Vector2 startPosition = Vector2.right;
 
     //ˆÚ“®‘¬“x
@@ -78,11 +79,10 @@ public class BaseBullet : MonoBehaviour
 
         //ˆÚ“®î•ñì¬
         moveSpeedMake();
-        Vector2 tesssss;
-        tesssss = velocityMake();
+        updateVelocity = velocityMake();
 
         //ˆÚ“®À{
-        rb.MovePosition(new Vector2(transform.position.x, transform.position.y) + tesssss);
+        rb.MovePosition(new Vector2(transform.position.x, transform.position.y) + updateVelocity);
 
     }
 
