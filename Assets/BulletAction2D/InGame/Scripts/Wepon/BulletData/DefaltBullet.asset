@@ -28,3 +28,5 @@ MonoBehaviour:
   acceleration: 0.5
   maxAcceleration: 4
   starAccelerationDistance: 1
+  bulletQuantity: 5
+  bulletAngle: 15

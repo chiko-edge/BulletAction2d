@@ -86,4 +86,14 @@ public class BulletData : ScriptableObject
     /// </summary>
     public float starAccelerationDistance;
 
+    /// <summary>
+    /// ”­Ë‚·‚é’e‚ÌŒÂ”
+    /// </summary>
+    public int bulletQuantity;
+
+    /// <summary>
+    /// ‰½“xŠÔŠu‚Å”­Ë‚·‚é‚©
+    /// </summary>
+    public float bulletAngle;
+
 }

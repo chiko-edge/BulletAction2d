@@ -35,7 +35,7 @@ public class Wepon : MonoBehaviour
             //Æ€‚Æ•ŠíˆÊ’u‚©‚çŒü‚«‚ğİ’è‚·‚é
             Vector3 targetVecter3 = (bulletCircle.transform.position - transform.position).normalized;
             Vector2 targetVecter = new Vector2(targetVecter3.x, targetVecter3.y);
-            BaseBullet obj = BaseBullet.Instantiate(baseBullet, targetVecter, transform.position, bulletData);
+            BaseBullet.Instantiate(baseBullet, targetVecter, transform.position, bulletData);
 
             canAttack = false;
             StartCoroutine("recast");

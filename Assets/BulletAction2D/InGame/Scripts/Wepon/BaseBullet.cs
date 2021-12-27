@@ -78,10 +78,11 @@ public class BaseBullet : MonoBehaviour
 
         //ˆÚ“®î•ñì¬
         moveSpeedMake();
-        Velocity = velocityMake();
+        Vector2 tesssss;
+        tesssss = velocityMake();
 
         //ˆÚ“®À{
-        rb.MovePosition(new Vector2(transform.position.x, transform.position.y) + velocity);
+        rb.MovePosition(new Vector2(transform.position.x, transform.position.y) + tesssss);
 
     }
 
@@ -108,19 +109,91 @@ public class BaseBullet : MonoBehaviour
     /// <param name="target"></param>
     /// <param name="position"></param>
     /// <returns></returns>
-    public static BaseBullet Instantiate(BaseBullet prefab,Vector2 target, Vector3 position, BulletData bulletData)
+    public static void Instantiate(BaseBullet prefab, Vector2 target, Vector3 position, BulletData bulletData)
     {
-        BaseBullet obj = Instantiate(prefab,position,Quaternion.identity);
+
+        switch (bulletData.bulletType)
+        {
+            case BulletType.SingleBullet:
+                SingleBulletInstantiate(prefab, target, position, bulletData);
+                break;
+
+            case BulletType.MultiBullet:
+                MultiBulletInstantiate(prefab, target, position, bulletData);
+                break;
+        }
+    }
+
+    /// <summary>
+    /// ’P”­‚Ì’e‚ğì¬‚·‚é
+    /// </summary>
+    /// <param name="prefab"></param>
+    /// <param name="target"></param>
+    /// <param name="position"></param>
+    /// <param name="bulletData"></param>
+    private static void SingleBulletInstantiate(BaseBullet prefab, Vector2 target, Vector3 position, BulletData bulletData)
+    {
+        BaseBullet obj = Instantiate(prefab, position, Quaternion.identity);
         obj.Velocity = target;
         obj.StartPosition = position;
         obj.Bullet = bulletData;
 
-
         //Œü‚«‚ğİ’è
         obj.transform.rotation = Quaternion.FromToRotation(Vector3.right, target);
-
-        return obj;
     }
+
+    /// <summary>
+    /// •¡”‚Ì’e‚ğì¬‚·‚é
+    /// </summary>
+    /// <param name="prefab"></param>
+    /// <param name="target"></param>
+    /// <param name="position"></param>
+    /// <param name="bulletData"></param>
+    private static void MultiBulletInstantiate(BaseBullet prefab, Vector2 target, Vector3 position, BulletData bulletData)
+    {
+        List<Vector2> targetList = new List<Vector2>();
+        int count = 0;
+        float bulletAngle = 0;
+        Quaternion angleAxis;
+        Vector3 targetVecter3 = new Vector3(target.x, target.y, 1);
+
+        //Šï”‚Ìê‡‚Í³–Ê‚ÉŒ‚‚Ä‚é‚æ‚¤‚É‚·‚é
+        if (bulletData.bulletQuantity / 2 != 0)
+        {
+            targetList.Add(target);
+            count++;
+        }
+
+        while (count < bulletData.bulletQuantity)
+        {
+            bulletAngle += bulletData.bulletAngle;
+
+            //+‚Æ-‚ÌŠp“x•ªì‚é
+            angleAxis = Quaternion.AngleAxis(bulletAngle, targetVecter3);
+            targetList.Add(angleAxis * target);
+
+            angleAxis = Quaternion.AngleAxis(-bulletAngle, targetVecter3);
+            targetList.Add(angleAxis * target);
+
+            count += 2;
+
+        }
+
+        //’e”­Ë
+        foreach (Vector2 tar in targetList)
+        {
+            BaseBullet obj = Instantiate(prefab, position, Quaternion.identity);
+            obj.Velocity = tar;
+            obj.StartPosition = position;
+            obj.Bullet = bulletData;
+
+            //Œü‚«‚ğİ’è
+            obj.transform.rotation = Quaternion.FromToRotation(Vector3.right, target);
+        }
+
+
+    }
+
 
     /// <summary>
     /// ˆÚ“®•ûŒüŒvZ
