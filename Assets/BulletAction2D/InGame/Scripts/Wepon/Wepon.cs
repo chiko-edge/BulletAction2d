@@ -33,7 +33,7 @@ public class Wepon : MonoBehaviour
         {
 
             //Æ€‚Æ•ŠíˆÊ’u‚©‚çŒü‚«‚ğİ’è‚·‚é
-            Vector3 targetVecter3 = (bulletCircle.transform.position - transform.position).normalized;
+            Vector3 targetVecter3 = (bulletCircle.transform.position - transform.position);
             Vector2 targetVecter = new Vector2(targetVecter3.x, targetVecter3.y);
             BaseBullet.Instantiate(baseBullet, targetVecter, transform.position, bulletData);
 

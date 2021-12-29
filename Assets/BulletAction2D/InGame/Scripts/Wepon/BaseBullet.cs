@@ -26,7 +26,7 @@ public class BaseBullet : MonoBehaviour
     //移動距離
     private float moveDistance = default;
 
-
+    float sec = default;
 
     //プロパティ群
     public Vector2 Velocity
@@ -215,7 +215,6 @@ public class BaseBullet : MonoBehaviour
                 gameObject.transform.rotation = Quaternion.FromToRotation(Vector3.right, Velocity);
 
                 break;
-
         }
 
         return result;

@@ -17,7 +17,7 @@ MonoBehaviour:
   attacPower: 5
   recastTime: 0.6
   maxMoveRange: 50
-  bulletType: 1
+  bulletType: 0
   BulletBallisticType: 0
   bulletAccelerationType: 0
   bulletImpactMovementType: 0
