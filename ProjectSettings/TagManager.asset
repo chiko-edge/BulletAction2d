@@ -5,6 +5,9 @@ TagManager:
   serializedVersion: 2
   tags:
   - Ground
+  - Bullet
+  - Item
+  - BulletItem
   layers:
   - Default
   - TransparentFX
@@ -14,9 +17,9 @@ TagManager:
   - UI
   - Player
   - Ground
-  - 
-  - 
-  - 
+  - Bullet
+  - Item
+  - GroundCheck
   - 
   - 
   - 
@@ -45,6 +48,15 @@ TagManager:
   - name: Ground
     uniqueID: 1358639779
     locked: 0
+  - name: Item
+    uniqueID: 3216511273
+    locked: 0
   - name: Player
     uniqueID: 3265192457
+    locked: 0
+  - name: Circle
+    uniqueID: 2101547417
+    locked: 0
+  - name: Bullet
+    uniqueID: 895612497
     locked: 0

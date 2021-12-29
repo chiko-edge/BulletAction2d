@@ -22,6 +22,14 @@
                     "interactions": ""
                 },
                 {
+                    "name": "JumpEnd",
+                    "type": "Button",
+                    "id": "dcee3a9e-b368-487e-9edd-749a6e6b9e28",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
                     "name": "Fire",
                     "type": "Button",
                     "id": "cf0ce9ac-db54-496e-ae64-137a457d8ed5",
@@ -38,9 +46,17 @@
                     "interactions": ""
                 },
                 {
-                    "name": "JumpEnd",
+                    "name": "ItemGet",
                     "type": "Button",
-                    "id": "dcee3a9e-b368-487e-9edd-749a6e6b9e28",
+                    "id": "b5c59f44-97fc-4912-ba1f-c5daa3a0f02a",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "BulletChange",
+                    "type": "Button",
+                    "id": "7703364e-2c8d-4ede-a253-fb26e4c9c0bf",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
@@ -148,12 +164,34 @@
                 },
                 {
                     "name": "",
+                    "id": "7f2d6c6b-3aa5-4632-a70b-03a0dba72a4d",
+                    "path": "<Keyboard>/f",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard＆Mouse",
+                    "action": "ItemGet",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "55018e4a-a16d-46bf-848a-87f65b6bf104",
                     "path": "<Keyboard>/space",
                     "interactions": "Press(behavior=1)",
                     "processors": "",
                     "groups": "Keyboard＆Mouse",
                     "action": "JumpEnd",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "cfc834b5-3f11-431d-a00d-f17ee32c6e91",
+                    "path": "<Keyboard>/r",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard＆Mouse",
+                    "action": "BulletChange",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
