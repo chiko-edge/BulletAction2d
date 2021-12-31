@@ -96,4 +96,10 @@ public class BulletData : ScriptableObject
     /// </summary>
     public float bulletAngle;
 
+    /// <summary>
+    /// wave‚Ì“®‚«•
+    /// </summary>
+    public float waveWidth;
+
+
 }

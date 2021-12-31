@@ -16,7 +16,7 @@ MonoBehaviour:
   moveSpeed: 5
   attacPower: 5
   recastTime: 0.6
-  maxMoveRange: 50
+  maxMoveRange: 20
   bulletType: 0
   BulletBallisticType: 0
   bulletAccelerationType: 0
@@ -30,3 +30,4 @@ MonoBehaviour:
   starAccelerationDistance: 1
   bulletQuantity: 3
   bulletAngle: 15
+  waveWidth: 2
