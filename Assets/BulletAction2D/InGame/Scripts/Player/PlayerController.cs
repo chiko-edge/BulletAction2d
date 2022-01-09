@@ -10,6 +10,7 @@ public class PlayerController : MonoBehaviour
     private Wepon wepon;
     private PlayerItemInventory playerItemInventory;
 
+
     private Vector2 moveInput;
 
     // Start is called before the first frame update
@@ -34,35 +35,35 @@ public class PlayerController : MonoBehaviour
     public void OnJumpStart()
     {
         playerMove.jumpStart();
-        Debug.Log("jump start");
     }
 
     public void OnJumpEnd()
     {
         playerMove.jumpEnd();
-        Debug.Log("jump end");
     }
 
     public void OnFire()
     {
-        //Debug.Log("Fire");
         wepon.Attack(playerItemInventory.getActiveBullet());
     }
 
     public void OnCircle(InputValue inputValue)
     {
-        //Debug.Log("Circle" + inputValue.Get<Vector2>());
         wepon.SetCircle(inputValue.Get<Vector2>());
     }
 
     public void OnItemGet()
     {
-        Debug.Log("item get");
         playerItemInventory.setBulletData();
     }
 
     public void OnBulletChange()
     {
         playerItemInventory.changeActiveBulletIndex();
+    }
+
+    public void OnInventoryOpen()
+    {
+        playerItemInventory.InventoryView();
     }
 }
