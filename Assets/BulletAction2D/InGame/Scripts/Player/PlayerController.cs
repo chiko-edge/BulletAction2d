@@ -9,6 +9,7 @@ public class PlayerController : MonoBehaviour
     private PlayerAnimation playerAnimation;
     private Wepon wepon;
     private PlayerItemInventory playerItemInventory;
+    private PlayerStatus playerStatus;
 
 
     private Vector2 moveInput;
@@ -21,49 +22,81 @@ public class PlayerController : MonoBehaviour
         playerAnimation = GetComponent<PlayerAnimation>();
         wepon = GetComponentInChildren<Wepon>();
         playerItemInventory = GetComponent<PlayerItemInventory>();
+        playerStatus = GetComponent<PlayerStatus>();
 
     }
 
     public void OnMove(InputValue inputValue)
     {
-        moveInput = inputValue.Get<Vector2>();
-        playerMove.MoveDirection = moveInput.x;
-        playerAnimation.animeRun(moveInput.x);
+        if (playerStatus.isMove())
+        {
+            moveInput = inputValue.Get<Vector2>();
+            playerMove.MoveDirection = moveInput.x;
+            playerAnimation.animeRun(moveInput.x);
+        }
+
 
     }
 
     public void OnJumpStart()
     {
-        playerMove.jumpStart();
+        if (playerStatus.isJump())
+        {
+            playerMove.jumpStart();
+        }
+
     }
 
     public void OnJumpEnd()
     {
-        playerMove.jumpEnd();
+        if (playerStatus.isJump())
+        {
+            playerMove.jumpEnd();
+        }
+
     }
 
     public void OnFire()
     {
-        wepon.Attack(playerItemInventory.getActiveBullet());
+        if (playerStatus.isFire())
+        {
+            wepon.Attack(playerItemInventory.getActiveBullet());
+        }
+
     }
 
     public void OnCircle(InputValue inputValue)
     {
-        wepon.SetCircle(inputValue.Get<Vector2>());
+        if (playerStatus.isCircle())
+        {
+            wepon.SetCircle(inputValue.Get<Vector2>());
+        }
+
     }
 
     public void OnItemGet()
     {
-        playerItemInventory.setBulletData();
+        if (playerStatus.isItemGet())
+        {
+            playerItemInventory.setBulletData();
+        }
+
     }
 
     public void OnBulletChange()
     {
-        playerItemInventory.changeActiveBulletIndex();
+        if (playerStatus.isBulletChange())
+        {
+            playerItemInventory.changeActiveBulletIndex();
+        }
     }
 
     public void OnInventoryOpen()
     {
-        playerItemInventory.InventoryView();
+        if (playerStatus.isInventoryOpen())
+        {
+            playerItemInventory.InventoryView(playerStatus);
+        }
+
     }
 }

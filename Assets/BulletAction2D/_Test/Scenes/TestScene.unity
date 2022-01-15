@@ -3487,6 +3487,7 @@ GameObject:
   - component: {fileID: 2107709967}
   - component: {fileID: 2107709968}
   - component: {fileID: 2107709969}
+  - component: {fileID: 2107709970}
   m_Layer: 6
   m_Name: Player
   m_TagString: Player
@@ -3699,6 +3700,18 @@ MonoBehaviour:
   bulletDatas:
   - {fileID: 11400000, guid: 6d568f2fbcd62fc4eb840461773c42be, type: 2}
   inventoryUi: {fileID: 185765928}
+--- !u!114 &2107709970
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2107709959}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 355f4661e840dfc48bc7251b5e1ae793, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &255828941855649238
 PrefabInstance:
   m_ObjectHideFlags: 0

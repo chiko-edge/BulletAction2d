@@ -124,7 +124,7 @@ public class PlayerItemInventory : MonoBehaviour
     }
 
 
-    public void InventoryView()
+    public void InventoryView(PlayerStatus playerStatus)
     {
         inventoryViewFlg = !inventoryViewFlg;
         //インベントリ表示切り替え
@@ -132,9 +132,11 @@ public class PlayerItemInventory : MonoBehaviour
 
         if (inventoryViewFlg)
         {
+            playerStatus.Status = PlayerStatusType.INVENTORY_OPEN;
             Time.timeScale = 0f;
         }else
         {
+            playerStatus.Status = PlayerStatusType.NONE;
             Time.timeScale = 1f;
         }
     }
