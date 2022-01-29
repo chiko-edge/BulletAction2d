@@ -14,6 +14,7 @@ public class PlayerItemInventory : MonoBehaviour
     [SerializeField]
     private GameObject inventoryUi;
     private bool inventoryViewFlg;
+    private CanvasGroup canvasGroup;
 
     
     private GameObject[] bakItems = new GameObject[16];
@@ -23,24 +24,26 @@ public class PlayerItemInventory : MonoBehaviour
 
     private int activBulletIndex = 0;
 
-    private const int MaxBulletIndex = 8;
+    private const int MaxBulletIndex = 4;
 
-    private const int MaxActiveBulletIndex = 3;
+    private const int MaxActiveBulletIndex = 4;
 
 
     private void Awake()
     {
         inventoryViewFlg = false;
+        canvasGroup = inventoryUi.GetComponent<CanvasGroup>();
         //インベントリ非表示
-        inventoryUi.SetActive(false);
+        canvasGroup.alpha = 0;
+        canvasGroup.interactable = false;
 
+        //uiのオブジェクトを設定
         foreach (Transform childTransFrom in inventoryUi.transform)
         {
             foreach(Transform child in childTransFrom)
             {
                 foreach (Transform item in child)
                 {
-                    Debug.Log(item.gameObject.name.Substring(item.gameObject.name.IndexOf("_")+1));
 
                     if (childTransFrom.name.Equals("Bag"))
                     {
@@ -55,7 +58,9 @@ public class PlayerItemInventory : MonoBehaviour
                 }
             }
         }
-        
+
+        setBulletImage();
+
 
     }
 
@@ -67,18 +72,34 @@ public class PlayerItemInventory : MonoBehaviour
     {
         if(tempBulletItem != null)
         {
-            if (bulletDatas.Count <= 19)
+            if (bulletDatas.Count < MaxBulletIndex)
             {
                 bulletDatas.Add(tempBulletItem.GetComponent<BulletItem>().Data);
                 Destroy(tempBulletItem);
 
-                bulletItems[0].transform.GetChild(0).GetComponent<Image>().sprite = bulletDatas[1].bulletIconSprite;
+                //bulletItems[0].transform.GetChild(0).GetComponent<Image>().sprite = bulletDatas[1].bulletIconSprite;
+
+                setBulletImage();
             }
 
         }
 
     }
 
+    /// <summary>
+    /// インベントリに弾の画像をセットする
+    /// </summary>
+    private void setBulletImage()
+    {
+        for (int i = 0; i < bulletDatas.Count; i++)
+        {
+            bulletItems[i].transform.GetChild(0).GetComponent<Image>().sprite = bulletDatas[i].bulletIconSprite;
+        }
+    }
+
+    /// <summary>
+    /// 撃つ弾を設定する
+    /// </summary>
     public void changeActiveBulletIndex()
     {
         activBulletIndex++;
@@ -95,6 +116,10 @@ public class PlayerItemInventory : MonoBehaviour
         Debug.Log("index : "+activBulletIndex);
     }
 
+    /// <summary>
+    /// 撃てる弾の情報を取得
+    /// </summary>
+    /// <returns></returns>
     public BulletData getActiveBullet()
     {
         if(bulletDatas.Count < 1)
@@ -124,20 +149,27 @@ public class PlayerItemInventory : MonoBehaviour
     }
 
 
+    /// <summary>
+    /// インベントリの表示切り替え
+    /// 表示中は時間を止める
+    /// </summary>
+    /// <param name="playerStatus"></param>
     public void InventoryView(PlayerStatus playerStatus)
     {
         inventoryViewFlg = !inventoryViewFlg;
-        //インベントリ表示切り替え
-        inventoryUi.SetActive(inventoryViewFlg) ;
+        canvasGroup.interactable = inventoryViewFlg;
 
         if (inventoryViewFlg)
         {
             playerStatus.Status = PlayerStatusType.INVENTORY_OPEN;
             Time.timeScale = 0f;
-        }else
+            canvasGroup.alpha = 1;
+        }
+        else
         {
             playerStatus.Status = PlayerStatusType.NONE;
             Time.timeScale = 1f;
+            canvasGroup.alpha = 0;
         }
     }
 }
