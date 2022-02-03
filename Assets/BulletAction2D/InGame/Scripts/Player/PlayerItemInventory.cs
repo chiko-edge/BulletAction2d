@@ -3,6 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.AddressableAssets;
+using UnityEngine.ResourceManagement.AsyncOperations;
 
 
 public class PlayerItemInventory : MonoBehaviour
@@ -23,9 +25,7 @@ public class PlayerItemInventory : MonoBehaviour
 
 
     private int activBulletIndex = 0;
-
     private const int MaxBulletIndex = 4;
-
     private const int MaxActiveBulletIndex = 4;
 
 
@@ -76,8 +76,6 @@ public class PlayerItemInventory : MonoBehaviour
             {
                 bulletDatas.Add(tempBulletItem.GetComponent<BulletItem>().Data);
                 Destroy(tempBulletItem);
-
-                //bulletItems[0].transform.GetChild(0).GetComponent<Image>().sprite = bulletDatas[1].bulletIconSprite;
 
                 setBulletImage();
             }
