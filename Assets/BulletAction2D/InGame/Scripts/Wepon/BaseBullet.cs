@@ -26,7 +26,15 @@ public class BaseBullet : MonoBehaviour
     //移動距離
     private float moveDistance = default;
 
-    float sec = default;
+    //waveのときに使用する
+    private Vector2 waveStarPoint;
+    private Vector2 waveEndPoint = Vector2.zero;
+    private Vector2 waveInterimPoint;
+    private float waveTime = 0;
+    private float switchVal = 1;
+    private int useCount = 0;
+    private int count = 0;
+    private List<Vector2> l1 = new List<Vector2>();
 
     //プロパティ群
     public Vector2 Velocity
@@ -64,6 +72,17 @@ public class BaseBullet : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         spriteRenderer.sprite = bullet.bulletSprite;
+
+
+        l1.Add(new Vector2(transform.position.x, transform.position.y));
+        if (bullet.BulletBallisticType == BulletBallisticType.Wave)
+        {
+            while (Vector2.Distance(l1[count], StartPosition) < (bullet.maxMoveRange * 1.5f))
+            {
+                count++;
+                l1.Add(startPosition + velocity.normalized * (bullet.moveSpeed * count));
+            }
+        }
 
     }
 
@@ -213,6 +232,36 @@ public class BaseBullet : MonoBehaviour
                 Velocity = new Vector2(Velocity.x, Velocity.y - bullet.downForce * Time.deltaTime);
                 result = Velocity.normalized * (moveSpeed + acceleration) * Time.deltaTime;
                 gameObject.transform.rotation = Quaternion.FromToRotation(Vector3.right, Velocity);
+                break;
+
+            case BulletBallisticType.Wave:
+
+                if(waveTime >= 1)
+                {
+                    waveTime = 0;
+                    switchVal = -switchVal;
+                    useCount++;
+                }
+
+                if(waveTime == 0)
+                {
+                    //始点設定
+                    waveStarPoint = l1[useCount];
+                    //終点設定
+                    waveEndPoint = l1[useCount + 1];
+                    //中間地点設定
+                    waveInterimPoint = Vector2.Lerp(waveStarPoint, waveEndPoint, 0.5f) + switchVal * Vector2.Perpendicular(velocity).normalized * bullet.waveWidth;
+
+                }
+
+                //設定した終点まで移動したか
+                waveTime = (waveTime + Time.deltaTime) >= 1 ? 1 : waveTime + Time.deltaTime;
+
+                Vector2 start = Vector2.Lerp(waveStarPoint, waveInterimPoint, waveTime);
+                Vector2 end = Vector2.Lerp(waveInterimPoint, waveEndPoint, waveTime);
+
+                result = Vector2.Lerp(start, end, waveTime) - new Vector2(transform.position.x,transform.position.y);
+
 
                 break;
         }
@@ -256,7 +305,6 @@ public class BaseBullet : MonoBehaviour
                         acceleration = -bullet.maxAcceleration;
                     }
                 }
-
                 break;
         }
     }
