@@ -60,6 +60,14 @@
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
+                },
+                {
+                    "name": "InventoryOpen",
+                    "type": "Button",
+                    "id": "72931553-3890-4786-b8fe-464dac60535a",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
                 }
             ],
             "bindings": [
@@ -192,6 +200,17 @@
                     "processors": "",
                     "groups": "Keyboard＆Mouse",
                     "action": "BulletChange",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "f15669c6-37cc-49e5-bdc0-9c3b4a10d121",
+                    "path": "<Keyboard>/e",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "InventoryOpen",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
