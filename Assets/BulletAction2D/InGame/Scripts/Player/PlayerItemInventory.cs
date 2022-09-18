@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.AddressableAssets;
 using UnityEngine.ResourceManagement.AsyncOperations;
+using UnityEngine.EventSystems;
 
 
 public class PlayerItemInventory : MonoBehaviour
@@ -15,8 +16,10 @@ public class PlayerItemInventory : MonoBehaviour
 
     [SerializeField]
     private GameObject inventoryUi;
+    private GameObject inventoryUiObject;
     private bool inventoryViewFlg;
     private CanvasGroup canvasGroup;
+    private GameObject canvas;
 
     
     private GameObject[] bakItems = new GameObject[16];
@@ -28,17 +31,42 @@ public class PlayerItemInventory : MonoBehaviour
     private const int MaxBulletIndex = 4;
     private const int MaxActiveBulletIndex = 4;
 
+    //マウス位置
+    private Vector2 mousePosition;
+    private Vector2 mouseScreenPosition;
+
+    private List<RaycastResult> results;
+
+    private Camera mainCamera;
+    private PointerEventData pointer;
+
+    public Vector2 MousePosition
+    {
+        get { return mousePosition; }
+        set { mousePosition = value; }
+    }
+
 
     private void Awake()
     {
+        results = new List<RaycastResult>();
+        mainCamera = Camera.main;
+        pointer = new PointerEventData(EventSystem.current);
+
         inventoryViewFlg = false;
-        canvasGroup = inventoryUi.GetComponent<CanvasGroup>();
+        canvas = GameObject.Find("Canvas");
+
+        //キャンバスにインベントリを作成
+        inventoryUiObject = Instantiate(inventoryUi);
+        inventoryUiObject.transform.SetParent(canvas.transform, false);
+
+        canvasGroup = inventoryUiObject.GetComponent<CanvasGroup>();
         //インベントリ非表示
         canvasGroup.alpha = 0;
         canvasGroup.interactable = false;
 
         //uiのオブジェクトを設定
-        foreach (Transform childTransFrom in inventoryUi.transform)
+        foreach (Transform childTransFrom in inventoryUiObject.transform)
         {
             foreach(Transform child in childTransFrom)
             {
@@ -62,6 +90,25 @@ public class PlayerItemInventory : MonoBehaviour
         setBulletImage();
 
 
+    }
+
+    private void Update()
+    {
+        if (inventoryViewFlg)
+        {
+            mouseScreenPosition = mainCamera.WorldToScreenPoint(mousePosition);
+            pointer.position = mousePosition;
+            EventSystem.current.RaycastAll(pointer, results);
+
+            if(results.Count > 1)
+            {
+                foreach(RaycastResult target in results)
+                {
+                    Debug.Log(target.gameObject.name);
+                }
+            }
+
+        }
     }
 
     /// <summary>

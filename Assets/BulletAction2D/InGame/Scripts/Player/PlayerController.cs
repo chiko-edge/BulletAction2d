@@ -14,6 +14,8 @@ public class PlayerController : MonoBehaviour
 
     private Vector2 moveInput;
 
+    private Vector2 startPoint;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -71,6 +73,10 @@ public class PlayerController : MonoBehaviour
         {
             wepon.SetCircle(inputValue.Get<Vector2>());
         }
+        else if (playerStatus.isInventoryOpen())
+        {
+            playerItemInventory.MousePosition = inputValue.Get<Vector2>();
+        }
 
     }
 
@@ -98,5 +104,15 @@ public class PlayerController : MonoBehaviour
             playerItemInventory.InventoryView(playerStatus);
         }
 
+    }
+
+    public void setStartPoint(Vector3 targetPoint)
+    {
+        startPoint = targetPoint;
+    }
+
+    public void RestertPlayer()
+    {
+        transform.position = startPoint;
     }
 }
